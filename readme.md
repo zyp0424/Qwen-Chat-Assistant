@@ -666,3 +666,12 @@ find /tmp/qwen_voice_assistant -maxdepth 3 -type f -ls 2>/dev/null
 - 常驻 KWS 模式不保存无效录音。
 - 如果进程被 `kill -9` 或设备断电，程序无法执行清理逻辑；可下次启动前手动运行 `cleanup`。
 - 流式 TTS 是句子级流式，不是 TTS 模型内部 token 级流式。
+
+## 鸣谢
+
+本项目的本地语音与板端推理流程受益于以下官方项目、模型生态和运行时工具。仓库中不重新分发这些第三方模型和 runtime；使用时请遵循各自项目的许可证和使用条款。
+
+- [sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx) 与 [sherpa-onnx 文档](https://k2-fsa.github.io/sherpa/onnx/index.html)：本项目 KWS、STT、TTS 的本地 ONNX 语音模型运行基础。
+- [ONNX](https://onnx.ai/) 与 [ONNX Runtime](https://onnxruntime.ai/)：本项目中 sherpa-onnx 语音模型所依赖的开放模型格式与推理运行时生态。
+- [Rockchip RKNN Toolkit2](https://github.com/airockchip/rknn-toolkit2)：RK3588/RKNPU 视觉侧 RKNN 模型部署与 runtime 生态。
+- [Rockchip RKNN-LLM / RKLLM](https://github.com/airockchip/rknn-llm)：RK3588 上 RKLLM 大语言模型部署、runtime 和 demo 生态。
