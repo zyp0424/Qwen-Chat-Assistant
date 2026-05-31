@@ -1,0 +1,8 @@
+click==8.4.1
+numpy==2.4.6
+packaging==26.2
+pexpect==4.9.0
+ptyprocess==0.7.0
+PyYAML==6.0.3
+sherpa-onnx-core==1.13.2
+sherpa_onnx==1.13.2

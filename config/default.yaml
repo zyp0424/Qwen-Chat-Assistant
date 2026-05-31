@@ -1,0 +1,129 @@
+paths:
+  project_dir: /home/cat/ai/qwen3vl2b
+  temp_dir: /tmp/qwen_voice_assistant
+  photo_dir: /home/cat/图片
+  placeholder_image: /home/cat/ai/qwen3vl2b/demo.jpg
+  capture_script: /home/cat/ai/qwen3vl2b/scripts/capture-photo.sh
+
+audio:
+  mic_device: plughw:4,0
+  speaker_device: plughw:4,0
+  playback_channels: 2
+  playback_sample_rate: 44100
+  playback_mode: stereo_dup
+  sample_rate: 16000
+  channels: 2
+  input_channel: left
+  mixer_card: 4
+  capture_channel_gain: 8
+  wake_input_gain: 8.0
+  asr_input_gain: 5.0
+  command_seconds: 6
+  wake_chunk_seconds: 2
+
+models:
+  asr:
+    tokens: /home/cat/ai/qwen3vl2b/models/sherpa-onnx-conformer-zh-stateless2-2023-05-23/tokens.txt
+    encoder: /home/cat/ai/qwen3vl2b/models/sherpa-onnx-conformer-zh-stateless2-2023-05-23/encoder-epoch-99-avg-1.int8.onnx
+    decoder: /home/cat/ai/qwen3vl2b/models/sherpa-onnx-conformer-zh-stateless2-2023-05-23/decoder-epoch-99-avg-1.onnx
+    joiner: /home/cat/ai/qwen3vl2b/models/sherpa-onnx-conformer-zh-stateless2-2023-05-23/joiner-epoch-99-avg-1.int8.onnx
+    num_threads: 2
+    suppress_stderr_warnings: true
+  tts:
+    type: matcha
+    acoustic_model: /home/cat/ai/qwen3vl2b/models/matcha-icefall-zh-baker/model-steps-3.onnx
+    vocoder: /home/cat/ai/qwen3vl2b/models/vocos-22khz-univ.onnx
+    lexicon: /home/cat/ai/qwen3vl2b/models/matcha-icefall-zh-baker/lexicon.txt
+    tokens: /home/cat/ai/qwen3vl2b/models/matcha-icefall-zh-baker/tokens.txt
+    data_dir: /home/cat/ai/qwen3vl2b/models/matcha-icefall-zh-baker
+    num_threads: 2
+    sid: 0
+    speed: 1.0
+    noise_scale: 1.0
+    length_scale: 1.0
+    ack_text: 好的，我先思考一下。
+    stream_max_speak_chars: 220
+    suppress_stderr_warnings: true
+  kws:
+    tokens: /home/cat/ai/qwen3vl2b/models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/tokens.txt
+    encoder: /home/cat/ai/qwen3vl2b/models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/encoder-epoch-13-avg-2-chunk-16-left-64.int8.onnx
+    decoder: /home/cat/ai/qwen3vl2b/models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/decoder-epoch-13-avg-2-chunk-16-left-64.onnx
+    joiner: /home/cat/ai/qwen3vl2b/models/sherpa-onnx-kws-zipformer-zh-en-3M-2025-12-20/joiner-epoch-13-avg-2-chunk-16-left-64.int8.onnx
+    keywords_file: /home/cat/ai/qwen3vl2b/config/wake_keywords.txt
+    num_threads: 2
+    keywords_score: 4.0
+    keywords_threshold: 0.07
+    suppress_stderr_warnings: true
+
+qwen:
+  demo: /home/cat/ai/qwen3vl2b/demo
+  vision_model: /home/cat/ai/qwen3vl2b/qwen3-vl-2b_vision_rk3588.rknn
+  llm_model: /home/cat/ai/qwen3vl2b/qwen3-vl-2b-instruct_w8a8_rk3588.rkllm
+  max_new_tokens: 2048
+  max_context_len: 4096
+  rknn_core_num: 3
+  img_start: <|vision_start|>
+  img_end: <|vision_end|>
+  img_content: <|image_pad|>
+  demo_image_marker: <image>
+  load_timeout: 300
+  reply_timeout: 300
+  stream_sentence_chars: 80
+  stream_sentence_hard_chars: 140
+
+intent:
+  photo_keywords:
+    - 拍照
+    - 拍一张
+    - 照一张
+    - 拍个照
+    - 拍一下
+    - 拍下来
+    - 拍张图
+    - 拍张照片
+    - 拍一张照片
+    - 拍个照片
+    - 拍个图片
+    - 照片
+    - 看一下
+    - 看看
+    - 看一看
+    - 帮我看
+    - 帮我看看
+    - 看下
+    - 看一眼
+    - 你看
+    - 看见
+    - 看到
+    - 摄像头
+    - 画面
+    - 眼前
+    - 现在看到
+    - 当前画面
+    - 面前
+    - 前面
+    - 视野
+    - 镜头
+    - 拍摄
+    - 识别一下
+    - 识别
+    - 辨认
+    - 描述一下
+    - 描述
+    - 说一下
+    - 这是什么
+    - 那是什么
+    - 什么东西
+    - 有什么
+    - 有哪些
+    - 多少个
+    - 几个
+    - 颜色
+    - 文字
+    - 字
+    - 读一下
+    - 念一下
+    - OCR
+    - ocr
+  image_prefix_trigger: 图片
+  image_prefix: <图片>

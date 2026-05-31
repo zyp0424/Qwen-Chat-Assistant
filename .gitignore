@@ -1,0 +1,38 @@
+# Python environment and caches
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Local Codex/agent metadata
+.agents/
+.codex/
+
+# Temporary audio/camera/runtime outputs
+/tmp/
+*.wav
+*.pcm
+*.raw
+*.nv12
+*.yuv
+*.mp4
+*.log
+
+# Local captured photos are stored outside this repository by default.
+# Keep demo.jpg tracked as the placeholder image.
+
+# Large local model assets excluded from the public repository
+/models/
+/*.rknn
+/*.rkllm
+
+# RKNN/RKLLM runtime and demo binaries excluded from the public repository
+/demo
+/imgenc
+/*.so
+
+# Misc local/editor files
+.DS_Store
+*.swp
+*.swo
