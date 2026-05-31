@@ -367,31 +367,31 @@ models:
 
 ```mermaid
 flowchart TD
-    A[外部声音] --> B[arecord raw PCM\nplughw:4,0 16kHz stereo]
-    B --> C[Wake: SherpaKeywordWake\n取 left channel + wake_input_gain\n内存 KWS 检测]
-    C -->|未命中| B
-    C -->|命中 鲁班猫/拍照助手| D[AudioRecorder\n录制 command.wav 6 秒]
-    D --> E[ASR: SherpaAsr\nleft channel + asr_input_gain]
-    E --> F[中文文本]
-    F --> G[IntentRouter\n判断 need_photo\n处理 <图片> 前缀]
-    G -->|need_photo=true| H[CameraAdapter]
-    H --> I[capture-photo.sh\n/dev/video11 NV12]
-    I --> J[/tmp/capture_work\n临时 JPG + NV12]
-    J --> K[/home/cat/图片/voice_*.jpg\n保留 JPG]
-    J --> L[删除 NV12]
-    G -->|need_photo=false| M[占位图 demo.jpg]
-    K --> N[QwenRunner.ask_stream]
+    A["外部声音"] --> B["arecord raw PCM<br/>plughw:4,0 16kHz stereo"]
+    B --> C["Wake: SherpaKeywordWake<br/>取 left channel + wake_input_gain<br/>内存 KWS 检测"]
+    C -->|"未命中"| B
+    C -->|"命中：鲁班猫/拍照助手"| D["AudioRecorder<br/>录制 command.wav 6 秒"]
+    D --> E["ASR: SherpaAsr<br/>left channel + asr_input_gain"]
+    E --> F["中文文本"]
+    F --> G["IntentRouter<br/>判断 need_photo<br/>处理 &lt;图片&gt; 前缀"]
+    G -->|"need_photo=true"| H["CameraAdapter"]
+    H --> I["capture-photo.sh<br/>/dev/video11 NV12"]
+    I --> J["/tmp/capture_work<br/>临时 JPG + NV12"]
+    J --> K["/home/cat/图片/voice_*.jpg<br/>保留 JPG"]
+    J --> L["删除 NV12"]
+    G -->|"need_photo=false"| M["占位图 demo.jpg"]
+    K --> N["QwenRunner.ask_stream"]
     M --> N
-    G --> O[Qwen 文本\n必要时补 <image>]
+    G --> O["Qwen 文本<br/>必要时补 &lt;image&gt;"]
     O --> N
-    N --> P[Qwen demo\nRKNN vision + RKLLM LLM]
-    P --> Q[stdout robot: 流式文本]
-    Q --> R[SentenceBuffer\n按 。！？；/长度切句]
-    R --> S[StreamingTtsPlayer queue]
-    S --> T[SherpaTts Matcha+Vocos\n逐句生成 audio.samples]
-    T --> U[samples_to_pcm16\n44100Hz stereo S16_LE]
-    U --> V[aplay stdin raw PCM]
-    V --> W[外接喇叭播放]
+    N --> P["Qwen demo<br/>RKNN vision + RKLLM LLM"]
+    P --> Q["stdout robot: 流式文本"]
+    Q --> R["SentenceBuffer<br/>按标点或长度切句"]
+    R --> S["StreamingTtsPlayer queue"]
+    S --> T["SherpaTts Matcha+Vocos<br/>逐句生成 audio.samples"]
+    T --> U["samples_to_pcm16<br/>44100Hz stereo S16_LE"]
+    U --> V["aplay stdin raw PCM"]
+    V --> W["外接喇叭播放"]
 ```
 
 ### 时序与通信排队
@@ -417,7 +417,7 @@ sequenceDiagram
     TTS-->>Speaker: raw PCM 播放
     Intent->>Camera: 如果 need_photo=true
     Camera-->>Qwen: 本轮 JPG 路径
-    Intent-->>Qwen: Qwen 文本，必要时带 <image>/<图片>
+    Intent-->>Qwen: Qwen 文本，必要时带 &lt;image&gt;/&lt;图片&gt;
     Qwen-->>Queue: 第一句回答
     Qwen-->>Queue: 第二句回答
     Queue-->>TTS: 按顺序取一句
