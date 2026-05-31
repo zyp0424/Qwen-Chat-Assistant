@@ -24,6 +24,7 @@
 为了避免 GitHub 普通仓库的大文件限制，也避免公开分发模型和板端 runtime 的许可证风险，本仓库只提交代码、脚本、配置、文档和小型占位图，不提交以下本地资产：
 
 - `.venv/` 虚拟环境
+- `__pycache__/`、`*.pyc` 等 Python 运行缓存
 - `models/` 下的 KWS、STT、TTS、Vocos 模型文件
 - `qwen3-vl-2b_vision_rk3588.rknn`
 - `qwen3-vl-2b-instruct_w8a8_rk3588.rkllm`
@@ -31,6 +32,13 @@
 - `librkllmrt.so`
 - `demo`
 - `imgenc`
+- `.wav`、`.pcm`、`.raw` 等临时音频文件
+- `.nv12`、`.yuv` 等相机原始帧或中间帧
+- `.mp4`、`.log` 等调试输出
+- `.agents/`、`.codex/` 等本地工具元数据
+- `.DS_Store`、`*.swp`、`*.swo` 等系统或编辑器临时文件
+
+这些排除规则写在 [.gitignore](/home/cat/ai/qwen3vl2b/.gitignore) 中。它们不会影响本机运行；只是避免把可重新生成的缓存、带隐私风险的临时音频/图片中间文件、大模型和第三方 runtime 推送到公开仓库。
 
 克隆公开仓库后，需要在项目根目录手动放回这些文件，并保持 [config/default.yaml](/home/cat/ai/qwen3vl2b/config/default.yaml) 中的路径一致。Python 虚拟环境通过 `requirements.txt` 复现：
 
