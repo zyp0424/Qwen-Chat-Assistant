@@ -403,27 +403,27 @@ sequenceDiagram
     participant ASR as STT
     participant Intent as IntentRouter
     participant Camera as CameraAdapter
-    participant Qwen as QwenRunner/demo
+    participant Qwen as QwenRunner demo
     participant Queue as TTS队列
     participant TTS as SherpaTts worker
-    participant Speaker as aplay/外接喇叭
+    participant Speaker as aplay speaker
 
-    User->>KWS: 说“鲁班猫”
-    KWS-->>ASR: 唤醒成功，开始录6秒指令
+    User->>KWS: 说唤醒词
+    KWS-->>ASR: 唤醒成功并录制指令
     User->>ASR: 说问题或指令
     ASR-->>Intent: 中文文本
     Intent-->>Queue: 先入队 ack_text
-    Queue-->>TTS: 好的，我先思考一下。
+    Queue-->>TTS: 播放确认语
     TTS-->>Speaker: raw PCM 播放
-    Intent->>Camera: 如果 need_photo=true
+    Intent->>Camera: 如果需要拍照
     Camera-->>Qwen: 本轮 JPG 路径
-    Intent-->>Qwen: Qwen 文本，必要时带 &lt;image&gt;/&lt;图片&gt;
+    Intent-->>Qwen: Qwen 文本和必要的图片标记
     Qwen-->>Queue: 第一句回答
     Qwen-->>Queue: 第二句回答
     Queue-->>TTS: 按顺序取一句
     TTS-->>Speaker: 写入 PCM
-    Note over Queue,TTS: 如果喇叭未播完，aplay stdin write 会阻塞在 TTS worker；Qwen 仍可继续入队。
-    Note over Queue,TTS: 如果喇叭播完但 Qwen 还没出下一句，TTS worker 阻塞等待 queue.get()。
+    Note over Queue,TTS: 如果喇叭未播完，TTS worker 会等待 aplay 写入完成，Qwen 仍可继续入队。
+    Note over Queue,TTS: 如果喇叭播完但 Qwen 还没出下一句，TTS worker 会等待队列新文本。
     Qwen-->>User: 终端打印完整回答
 ```
 
