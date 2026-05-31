@@ -55,6 +55,14 @@ pip install -r requirements.txt
 /home/cat/ai/qwen3vl2b/models/vocos-22khz-univ.onnx
 ```
 
+## 许可证
+
+本仓库中的代码、脚本和文档使用 [MIT License](/home/cat/ai/qwen3vl2b/LICENSE)。
+
+MIT License 允许他人在保留版权声明和许可证文本的前提下使用、复制、修改、分发和商用本仓库内容。该授权不代表他人可以直接修改本仓库；外部贡献仍需要通过 fork、branch 或 pull request，由仓库维护者决定是否合并。
+
+本许可证不覆盖未提交到仓库的第三方模型、RKNN/RKLLM runtime、demo 二进制、语音模型文件或其它第三方资产。这些资产应遵循各自来源的许可证和使用条款。
+
 ## 本地运行优势
 
 - **隐私更强**：唤醒、语音识别、图片、问题文本、模型回答和语音合成都在本机处理，不上传语音、照片或对话内容。
