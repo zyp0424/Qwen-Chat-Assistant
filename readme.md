@@ -19,6 +19,10 @@
 - 中文语音合成 TTS 声学模型：`models/matcha-icefall-zh-baker/model-steps-3.onnx`
 - TTS 声码器：`models/vocos-22khz-univ.onnx`
 
+## 演示视频
+
+- 哔哩哔哩：[基于鲁班猫（RK3588）的视觉语音问答助手](https://b23.tv/mCNu8GP)
+
 ## 公开仓库说明
 
 为了避免 GitHub 普通仓库的大文件限制，也避免公开分发模型和板端 runtime 的许可证风险，本仓库只提交代码、脚本、配置、文档和小型占位图，不提交以下本地资产：
