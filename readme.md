@@ -21,7 +21,7 @@
 
 ## 演示视频
 
-[![基于鲁班猫（RK3588）的视觉语音问答助手](https://i1.hdslb.com/bfs/archive/aa626998ee1d7e1003a6a2c304fa31a96c599bd3.jpg)](https://b23.tv/mCNu8GP)
+[![基于鲁班猫（RK3588）的视觉语音问答助手](assets/demo-cover-play.jpg)](https://b23.tv/mCNu8GP)
 
 [点击封面观看：基于鲁班猫（RK3588）的视觉语音问答助手](https://b23.tv/mCNu8GP)
 
