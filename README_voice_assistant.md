@@ -69,7 +69,7 @@
 
 先说“鲁班猫”或“拍照助手”，唤醒后再说 6 秒内的完整指令。
 
-当前唤醒链路会采集双声道音频并只取左声道，启动时自动把 ES8388 采集增益调到 `8/8`。远距离唤醒相关参数在 [config/default.yaml](/home/cat/ai/qwen3vl2b/config/default.yaml)：`capture_channel_gain`、`wake_input_gain`、`keywords_score`、`keywords_threshold`。
+当前唤醒链路会采集双声道音频并只取左声道，启动时自动把 ES8388 采集增益调到 `8/8`。远距离唤醒相关参数在 [config/default.yaml](config/default.yaml)：`capture_channel_gain`、`wake_input_gain`、`keywords_score`、`keywords_threshold`。
 
 如果 KWS 唤醒词效果不好，可用 STT 回退模式：
 
