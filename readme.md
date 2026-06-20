@@ -23,13 +23,9 @@
 
 ### 视觉聊天 AI 助手
 
-[![基于RK3588的视觉聊天AI助手](assets/demo-cover-visual-chat-play.jpg)](https://b23.tv/GFE15CQ)
-
 [点击封面观看：基于RK3588的视觉聊天AI助手](https://b23.tv/GFE15CQ)
 
 ### 视觉语音问答助手
-
-[![基于鲁班猫（RK3588）的视觉语音问答助手](assets/demo-cover-play.jpg)](https://b23.tv/mCNu8GP)
 
 [点击封面观看：基于鲁班猫（RK3588）的视觉语音问答助手](https://b23.tv/mCNu8GP)
 
